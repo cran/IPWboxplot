@@ -1,0 +1,162 @@
+---
+title: "IPWboxplot"
+author: 'Ana Maria Bianco, Graciela Boente,  and Ana Perez-Gonzalez'
+date: "`r Sys.Date()`"
+output:
+  pdf_document: 
+    number_sections: yes
+    toc: yes
+  html_document:
+    df_print: paged
+  rmarkdown::html_vignette: default
+vignette: >
+  %\VignetteIndexEntry{Vignette Title} 
+  %\VignetteEncoding{UTF-8}{inputenc}
+  %\VignetteEngine{knitr::rmarkdown} 
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+# Introduction
+
+**IPWboxplot**  is a contributed R package for drawing boxplots adapted to the happenstance of missing observations when drop-out probabilities are given by the practitioner or  modelled  using auxiliary covariates. It also provides a function to estimate asymptotically unbiased quantiles based on inverse probability weighting (IPW) as in Zhang et al. (2012). For that purpose, a missing at random model is assumed. These IPW quantiles are used to compute the measures needed to construct the boxplot and hence, to calculate the outlier cut--off values. 
+
+
+
+This document gives a quick tour of **IPWboxplot** (version `r packageVersion("IPWboxplot")`) functionalities. It was written in R Markdown, using the [knitr](https://cran.r-project.org/package=knitr) package for production. 
+See `help (package="IPWboxplot")` for further details and references provided by `citation ("IPWboxplot")`.
+
+```{r}
+library(IPWboxplot)
+```
+
+# Inverse Probability Weighted Quantiles
+
+The function `IPW.quantile` computes the IPW quantiles of a vector _y_ containing missing observations when auxiliary information from a vector of drop-out probabilities supplied by the user or from a set of covariates is available. 
+The dataset `boys` of the R package **mice** allows us to illustrate the use of this function.
+
+The dataset contains 748 observations and the variable _y=tv_ has 522 missing observations. For illustrative purposes, we consider the variable _age_, which is completely observed, as covariate with  predictive capability for the propensity. By default, a logistic model is used to fit the happenstance probabilities. The following code returns the 
+$\alpha-$quantiles corresponding to $\alpha=$ 0.25, 0.5, 0.75 and 0.9 of the variable _"Testicular volume (tv)"_ using inverse probability weighting.
+
+```{r, par=TRUE,message=FALSE}
+library(mice)
+data(boys)
+attach(boys)
+dim(boys)
+res=IPW.quantile(tv,x=age,probs=c(0.25,0.5,0.75,0.9))
+ls(res)
+#res$px is the vector of estimated drop-out probabilities
+#res$IPW.quantile is the vector of estimated IPW quantiles
+res$IPW.quantile
+```
+
+# Inverse Probability Weighted Boxplot
+The function `IPW.boxplot` draws the modified boxplot adapted to missing data using the IPW quantiles. 
+The function also returns a list of statistical summaries. As default, the function returns only the adapted boxplot and the statistics computed by inverse probability weighting.
+```{r, par=TRUE, fig.cap="Inverse probability weighted boxplot for testicular volume"}
+res=IPW.boxplot(tv,x=age,main=" ")
+
+```
+The function returns a list containing the quartiles, the lower and upper whiskers of the IPW boxplot, the observations considered as outliers and the vector of estimated or given drop-out probabilities.
+```{r}
+ls(res)
+```
+
+As shown in Figure 1, the IPW boxplot does not detect ouliers for this data set.
+```{r, par=TRUE}
+res$out.IPW
+```
+Specifying *both* in the argument "graph", the function allows to compare the adapted boxplot with the naive boxplot obtained by simply dropping out the missing observations.  In this situation, besides the measures related to the IPW boxplot, the function also returns the quartiles, whiskers and detected outliers obtained with the observations at hand which are associated to naive boxplot.
+
+```{r, par=TRUE,fig.cap="Inverse probability weighted and naive boxplots for testicular volume"}
+res1=IPW.boxplot(tv,x=age,graph="both",color="blue",size.letter=0.7,main=" ")
+
+```
+From Figure 2,  the differences between both boxplots become evident. In particular the box of the naive boxplot is enlarged with respect to that of the IPW. 
+
+As mentioned above, when  the argument "graph" equals *both*, the function returns  a list with the naive and IPW statistical summaries.
+```{r}
+ls(res1)
+```
+
+Other arguments, such  as the color of the boxes, the main title, the letter size  or the axis labels can be given as arguments in this function. 
+
+
+# Inverse Probability Weighted Boxplot adapted to skewed data.
+
+The function `IPW.ASYM.boxplot` draws the modified boxplot adapted to missing data and skewness. In addition to the parameters returned by the function IPW.boxplot, this function also computes a skewness measure calculated as in Hinkley (1975),  see also Brys et al. (2003).
+
+The argument "method" selects the quartiles (method="quartile" as default) or the octiles (method="octile") as a procedure  to compute the skewness measure denoted SKEW and defined, respectively, as
+
+\begin{align*}
+SKEW &=\frac{(Q_{0.75}-Q_{0.5})-(Q_{0.5}-Q_{25})}{(Q_{0.75}-Q_{0.25}))},
+\\
+SKEW &=\frac{(Q_{0.875}-Q_{0.5})-(Q_{0.5}-Q_{0.125})}{(Q_{0.875}-Q_{0.125})},
+\end{align*}
+
+where $Q_{\alpha}$ denotes the $\alpha-$quantile.
+
+The whiskers and the outlier cut--off values are computed by means of an exponential model in the fashion of Hubert and Vandervieren (2008) taking into account the interval:
+
+\begin{equation*}\label{interval}
+(Q_{0.25}-1.5*\exp{(c_i*SKEW)}*IQR,Q_{0.75}+1.5*\exp{(c_s*SKEW)}*IQR).
+\end{equation*}
+
+where $IQR=Q_{0.75}-Q_{0.25}$ and   $c_i$=`ctea` and $c_s$=`cteb` if SKEW is positive, otherwise, $c_i$=`-cteb` and $c_s$=`-ctea`.
+
+
+The default values for `ctea` and `cteb` are $-4$ and $3$, however, the user may choose other values for these constants. 
+
+As an example, Figures 3 displays the boxplot adapted to skewness and missing values for  the variable  head circumference, hc, which has 46 missing values.
+
+```{r, fig.cap="Inverse probability weighted  boxplot adapted to skewness for head circumference.",fig.show='hold'}
+res2=IPW.ASYM.boxplot(hc,x=age,size.letter=0.85,main=" ")
+```
+The elements returned in the list are the following:
+```{r}
+ls(res2)
+```
+The  detected outliers are:
+```{r, par=TRUE}
+res2$out.IPW
+```
+The skewness measure computed using the quartiles equals:
+```{r}
+res2$SKEW.IPW
+```
+
+By specifying "graph" equal to *both*, the function displays two parallel modified boxplots as in Figure 4, where the plot on the left corresponds to the IPW version and that on the right, to the naive one.
+```{r, par=TRUE,fig.cap="Inverse probability weighted and naive boxplots adjusted for skewness of head circumference.",fig.show='hold'}
+res3=IPW.ASYM.boxplot(hc,x=age,graph="both",main=" ",color="blue",size.letter=0.75)
+```
+The elements res3\$out.IPW and  res3\$out.NAIVE provide the outliers detected by each method.
+```{r}
+res3$out.IPW
+res3$out.NAIVE
+```
+
+The values of res3\$SKEW.IPW and res3\$SKEW.NAIVE are the skewness measures calculated from the IPW quantiles or from the naive ones, respectively.
+
+```{r}
+res3$SKEW.IPW
+res3$SKEW.NAIVE
+```
+
+It is worth noticing that the naive boxplot detects only one observation as outlier, while the IPW version identifies five observations as atypical.
+
+# References
+
+Brys, G., Hubert, M. and Struyf, A. (2003). A comparison of some new measures of skewness. In Developments in Robust Statistics, ICORS 2001, eds. R. Dutter, P. Filzmoser, U. Gather, and P.J. Rousseeuw, Heidelberg: Springer-Verlag, pp. 98-113.
+
+Hinkley, D. V. (1975). On power transformations to symmetry. Biometrika, 62, 101-111.
+
+Hubert, M. and Vandervieren,  E. (2008).  An adjusted boxplot for skewed distributions.  Computational Statistics & Data Analysis, 52, 5186-5201. 
+
+Zhang, Z., Chen, Z., Troendle, J. F. and Zhang, J. (2012). Causal inference on quantiles with an
+obstetric application. Biometrics, 68, 697-706. 
+
+

@@ -1,0 +1,5 @@
+exportPattern("^[[:alpha:]]+")
+
+  importFrom("graphics", "axis", "lines", "plot", "points")
+  importFrom("stats", "glm")
+  importFrom(isotone,weighted.fractile)
