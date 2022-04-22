@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title>Introduction</title>
+
+<script type="text/javascript">
+window.onload = function() {
+  var imgs = document.getElementsByTagName('img'), i, img;
+  for (i = 0; i < imgs.length; i++) {
+    img = imgs[i];
+    // center an image if it is the only element of its parent
+    if (img.parentElement.childElementCount === 1)
+      img.parentElement.style.textAlign = 'center';
+  }
+};
+</script>
+
+<!-- Styles for R syntax highlighter -->
+<style type="text/css">
+   pre .operator,
+   pre .paren {
+     color: rgb(104, 118, 135)
+   }
+
+   pre .literal {
+     color: #990073
+   }
+
+   pre .number {
+     color: #099;
+   }
+
+   pre .comment {
+     color: #998;
+     font-style: italic
+   }
+
+   pre .keyword {
+     color: #900;
+     font-weight: bold
+   }
+
+   pre .identifier {
+     color: rgb(0, 0, 0);
+   }
+
+   pre .string {
+     color: #d14;
+   }
+</style>
+
+<!-- R syntax highlighter -->
+<script type="text/javascript">
+var hljs=new function(){function m(p){return p.replace(/&/gm,"&amp;").replace(/</gm,"&lt;")}function f(r,q,p){return RegExp(q,"m"+(r.cI?"i":"")+(p?"g":""))}function b(r){for(var p=0;p<r.childNodes.length;p++){var q=r.childNodes[p];if(q.nodeName=="CODE"){return q}if(!(q.nodeType==3&&q.nodeValue.match(/\s+/))){break}}}function h(t,s){var p="";for(var r=0;r<t.childNodes.length;r++){if(t.childNodes[r].nodeType==3){var q=t.childNodes[r].nodeValue;if(s){q=q.replace(/\n/g,"")}p+=q}else{if(t.childNodes[r].nodeName=="BR"){p+="\n"}else{p+=h(t.childNodes[r])}}}if(/MSIE [678]/.test(navigator.userAgent)){p=p.replace(/\r/g,"\n")}return p}function a(s){var r=s.className.split(/\s+/);r=r.concat(s.parentNode.className.split(/\s+/));for(var q=0;q<r.length;q++){var p=r[q].replace(/^language-/,"");if(e[p]){return p}}}function c(q){var p=[];(function(s,t){for(var r=0;r<s.childNodes.length;r++){if(s.childNodes[r].nodeType==3){t+=s.childNodes[r].nodeValue.length}else{if(s.childNodes[r].nodeName=="BR"){t+=1}else{if(s.childNodes[r].nodeType==1){p.push({event:"start",offset:t,node:s.childNodes[r]});t=arguments.callee(s.childNodes[r],t);p.push({event:"stop",offset:t,node:s.childNodes[r]})}}}}return t})(q,0);return p}function k(y,w,x){var q=0;var z="";var s=[];function u(){if(y.length&&w.length){if(y[0].offset!=w[0].offset){return(y[0].offset<w[0].offset)?y:w}else{return w[0].event=="start"?y:w}}else{return y.length?y:w}}function t(D){var A="<"+D.nodeName.toLowerCase();for(var B=0;B<D.attributes.length;B++){var C=D.attributes[B];A+=" "+C.nodeName.toLowerCase();if(C.value!==undefined&&C.value!==false&&C.value!==null){A+='="'+m(C.value)+'"'}}return A+">"}while(y.length||w.length){var v=u().splice(0,1)[0];z+=m(x.substr(q,v.offset-q));q=v.offset;if(v.event=="start"){z+=t(v.node);s.push(v.node)}else{if(v.event=="stop"){var p,r=s.length;do{r--;p=s[r];z+=("</"+p.nodeName.toLowerCase()+">")}while(p!=v.node);s.splice(r,1);while(r<s.length){z+=t(s[r]);r++}}}}return z+m(x.substr(q))}function j(){function q(x,y,v){if(x.compiled){return}var u;var s=[];if(x.k){x.lR=f(y,x.l||hljs.IR,true);for(var w in x.k){if(!x.k.hasOwnProperty(w)){continue}if(x.k[w] instanceof Object){u=x.k[w]}else{u=x.k;w="keyword"}for(var r in u){if(!u.hasOwnProperty(r)){continue}x.k[r]=[w,u[r]];s.push(r)}}}if(!v){if(x.bWK){x.b="\\b("+s.join("|")+")\\s"}x.bR=f(y,x.b?x.b:"\\B|\\b");if(!x.e&&!x.eW){x.e="\\B|\\b"}if(x.e){x.eR=f(y,x.e)}}if(x.i){x.iR=f(y,x.i)}if(x.r===undefined){x.r=1}if(!x.c){x.c=[]}x.compiled=true;for(var t=0;t<x.c.length;t++){if(x.c[t]=="self"){x.c[t]=x}q(x.c[t],y,false)}if(x.starts){q(x.starts,y,false)}}for(var p in e){if(!e.hasOwnProperty(p)){continue}q(e[p].dM,e[p],true)}}function d(B,C){if(!j.called){j();j.called=true}function q(r,M){for(var L=0;L<M.c.length;L++){if((M.c[L].bR.exec(r)||[null])[0]==r){return M.c[L]}}}function v(L,r){if(D[L].e&&D[L].eR.test(r)){return 1}if(D[L].eW){var M=v(L-1,r);return M?M+1:0}return 0}function w(r,L){return L.i&&L.iR.test(r)}function K(N,O){var M=[];for(var L=0;L<N.c.length;L++){M.push(N.c[L].b)}var r=D.length-1;do{if(D[r].e){M.push(D[r].e)}r--}while(D[r+1].eW);if(N.i){M.push(N.i)}return f(O,M.join("|"),true)}function p(M,L){var N=D[D.length-1];if(!N.t){N.t=K(N,E)}N.t.lastIndex=L;var r=N.t.exec(M);return r?[M.substr(L,r.index-L),r[0],false]:[M.substr(L),"",true]}function z(N,r){var L=E.cI?r[0].toLowerCase():r[0];var M=N.k[L];if(M&&M instanceof Array){return M}return false}function F(L,P){L=m(L);if(!P.k){return L}var r="";var O=0;P.lR.lastIndex=0;var M=P.lR.exec(L);while(M){r+=L.substr(O,M.index-O);var N=z(P,M);if(N){x+=N[1];r+='<span class="'+N[0]+'">'+M[0]+"</span>"}else{r+=M[0]}O=P.lR.lastIndex;M=P.lR.exec(L)}return r+L.substr(O,L.length-O)}function J(L,M){if(M.sL&&e[M.sL]){var r=d(M.sL,L);x+=r.keyword_count;return r.value}else{return F(L,M)}}function I(M,r){var L=M.cN?'<span class="'+M.cN+'">':"";if(M.rB){y+=L;M.buffer=""}else{if(M.eB){y+=m(r)+L;M.buffer=""}else{y+=L;M.buffer=r}}D.push(M);A+=M.r}function G(N,M,Q){var R=D[D.length-1];if(Q){y+=J(R.buffer+N,R);return false}var P=q(M,R);if(P){y+=J(R.buffer+N,R);I(P,M);return P.rB}var L=v(D.length-1,M);if(L){var O=R.cN?"</span>":"";if(R.rE){y+=J(R.buffer+N,R)+O}else{if(R.eE){y+=J(R.buffer+N,R)+O+m(M)}else{y+=J(R.buffer+N+M,R)+O}}while(L>1){O=D[D.length-2].cN?"</span>":"";y+=O;L--;D.length--}var r=D[D.length-1];D.length--;D[D.length-1].buffer="";if(r.starts){I(r.starts,"")}return R.rE}if(w(M,R)){throw"Illegal"}}var E=e[B];var D=[E.dM];var A=0;var x=0;var y="";try{var s,u=0;E.dM.buffer="";do{s=p(C,u);var t=G(s[0],s[1],s[2]);u+=s[0].length;if(!t){u+=s[1].length}}while(!s[2]);if(D.length>1){throw"Illegal"}return{r:A,keyword_count:x,value:y}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:m(C)}}else{throw H}}}function g(t){var p={keyword_count:0,r:0,value:m(t)};var r=p;for(var q in e){if(!e.hasOwnProperty(q)){continue}var s=d(q,t);s.language=q;if(s.keyword_count+s.r>r.keyword_count+r.r){r=s}if(s.keyword_count+s.r>p.keyword_count+p.r){r=p;p=s}}if(r.language){p.second_best=r}return p}function i(r,q,p){if(q){r=r.replace(/^((<[^>]+>|\t)+)/gm,function(t,w,v,u){return w.replace(/\t/g,q)})}if(p){r=r.replace(/\n/g,"<br>")}return r}function n(t,w,r){var x=h(t,r);var v=a(t);var y,s;if(v){y=d(v,x)}else{return}var q=c(t);if(q.length){s=document.createElement("pre");s.innerHTML=y.value;y.value=k(q,c(s),x)}y.value=i(y.value,w,r);var u=t.className;if(!u.match("(\\s|^)(language-)?"+v+"(\\s|$)")){u=u?(u+" "+v):v}if(/MSIE [678]/.test(navigator.userAgent)&&t.tagName=="CODE"&&t.parentNode.tagName=="PRE"){s=t.parentNode;var p=document.createElement("div");p.innerHTML="<pre><code>"+y.value+"</code></pre>";t=p.firstChild.firstChild;p.firstChild.cN=s.cN;s.parentNode.replaceChild(p.firstChild,s)}else{t.innerHTML=y.value}t.className=u;t.result={language:v,kw:y.keyword_count,re:y.r};if(y.second_best){t.second_best={language:y.second_best.language,kw:y.second_best.keyword_count,re:y.second_best.r}}}function o(){if(o.called){return}o.called=true;var r=document.getElementsByTagName("pre");for(var p=0;p<r.length;p++){var q=b(r[p]);if(q){n(q,hljs.tabReplace)}}}function l(){if(window.addEventListener){window.addEventListener("DOMContentLoaded",o,false);window.addEventListener("load",o,false)}else{if(window.attachEvent){window.attachEvent("onload",o)}else{window.onload=o}}}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=n;this.initHighlighting=o;this.initHighlightingOnLoad=l;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="\\b(0[xX][a-fA-F0-9]+|(\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.ER="(?![\\s\\S])";this.BE={b:"\\\\.",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(r,s){var p={};for(var q in r){p[q]=r[q]}if(s){for(var q in s){p[q]=s[q]}}return p}}();hljs.LANGUAGES.cpp=function(){var a={keyword:{"false":1,"int":1,"float":1,"while":1,"private":1,"char":1,"catch":1,"export":1,virtual:1,operator:2,sizeof:2,dynamic_cast:2,typedef:2,const_cast:2,"const":1,struct:1,"for":1,static_cast:2,union:1,namespace:1,unsigned:1,"long":1,"throw":1,"volatile":2,"static":1,"protected":1,bool:1,template:1,mutable:1,"if":1,"public":1,friend:2,"do":1,"return":1,"goto":1,auto:1,"void":2,"enum":1,"else":1,"break":1,"new":1,extern:1,using:1,"true":1,"class":1,asm:1,"case":1,typeid:1,"short":1,reinterpret_cast:2,"default":1,"double":1,register:1,explicit:1,signed:1,typename:1,"try":1,"this":1,"switch":1,"continue":1,wchar_t:1,inline:1,"delete":1,alignof:1,char16_t:1,char32_t:1,constexpr:1,decltype:1,noexcept:1,nullptr:1,static_assert:1,thread_local:1,restrict:1,_Bool:1,complex:1},built_in:{std:1,string:1,cin:1,cout:1,cerr:1,clog:1,stringstream:1,istringstream:1,ostringstream:1,auto_ptr:1,deque:1,list:1,queue:1,stack:1,vector:1,map:1,set:1,bitset:1,multiset:1,multimap:1,unordered_set:1,unordered_map:1,unordered_multiset:1,unordered_multimap:1,array:1,shared_ptr:1}};return{dM:{k:a,i:"</",c:[hljs.CLCM,hljs.CBLCLM,hljs.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},hljs.CNM,{cN:"preprocessor",b:"#",e:"$"},{cN:"stl_container",b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:a,r:10,c:["self"]}]}}}();hljs.LANGUAGES.r={dM:{c:[hljs.HCM,{cN:"number",b:"\\b0[xX][0-9a-fA-F]+[Li]?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+(?:[eE][+\\-]?\\d*)?L\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+\\.(?!\\d)(?:i\\b)?",e:hljs.IMMEDIATE_RE,r:1},{cN:"number",b:"\\b\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"keyword",b:"(?:tryCatch|library|setGeneric|setGroupGeneric)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\.",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\d+(?![\\w.])",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\b(?:function)",e:hljs.IMMEDIATE_RE,r:2},{cN:"keyword",b:"(?:if|in|break|next|repeat|else|for|return|switch|while|try|stop|warning|require|attach|detach|source|setMethod|setClass)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"literal",b:"(?:NA|NA_integer_|NA_real_|NA_character_|NA_complex_)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"literal",b:"(?:NULL|TRUE|FALSE|T|F|Inf|NaN)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"identifier",b:"[a-zA-Z.][a-zA-Z0-9._]*\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"<\\-(?!\\s*\\d)",e:hljs.IMMEDIATE_RE,r:2},{cN:"operator",b:"\\->|<\\-",e:hljs.IMMEDIATE_RE,r:1},{cN:"operator",b:"%%|~",e:hljs.IMMEDIATE_RE},{cN:"operator",b:">=|<=|==|!=|\\|\\||&&|=|\\+|\\-|\\*|/|\\^|>|<|!|&|\\||\\$|:",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"%",e:"%",i:"\\n",r:1},{cN:"identifier",b:"`",e:"`",r:0},{cN:"string",b:'"',e:'"',c:[hljs.BE],r:0},{cN:"string",b:"'",e:"'",c:[hljs.BE],r:0},{cN:"paren",b:"[[({\\])}]",e:hljs.IMMEDIATE_RE,r:0}]}};
+hljs.initHighlightingOnLoad();
+</script>
+
+<!-- MathJax scripts -->
+<script type="text/javascript" src="https://cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 13px;
+}
+
+body {
+  max-width: 800px;
+  margin: auto;
+  padding: 1em;
+  line-height: 20px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 {
+   font-size:2.2em;
+}
+
+h2 {
+   font-size:1.8em;
+}
+
+h3 {
+   font-size:1.4em;
+}
+
+h4 {
+   font-size:1.0em;
+}
+
+h5 {
+   font-size:0.9em;
+}
+
+h6 {
+   font-size:0.8em;
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre, img {
+  max-width: 100%;
+}
+pre {
+  overflow-x: auto;
+}
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code {
+  font-size: 92%;
+  border: 1px solid #ccc;
+}
+
+code[class] {
+  background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * {
+      background: transparent !important;
+      color: black !important;
+      filter:none !important;
+      -ms-filter: none !important;
+   }
+
+   body {
+      font-size:12pt;
+      max-width:100%;
+   }
+
+   a, a:visited {
+      text-decoration: underline;
+   }
+
+   hr {
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote {
+      padding-right: 1em;
+      page-break-inside: avoid;
+   }
+
+   tr, img {
+      page-break-inside: avoid;
+   }
+
+   img {
+      max-width: 100% !important;
+   }
+
+   @page :left {
+      margin: 15mm 20mm 15mm 10mm;
+   }
+
+   @page :right {
+      margin: 15mm 10mm 15mm 20mm;
+   }
+
+   p, h2, h3 {
+      orphans: 3; widows: 3;
+   }
+
+   h2, h3 {
+      page-break-after: avoid;
+   }
+}
+</style>
+
+
+
+</head>
+
+<body>
+<h1>Introduction</h1>
+
+<p><strong>IPWboxplot</strong>  is a contributed R package for drawing boxplots adapted to the happenstance of missing observations when drop-out probabilities are given by the practitioner or  modelled  using auxiliary covariates. It also provides a function to estimate asymptotically unbiased quantiles based on inverse probability weighting (IPW) as in Zhang et al. (2012). For that purpose, a missing at random model is assumed. These IPW quantiles are used to compute the measures needed to construct the boxplot and hence, to calculate the outlier cut&ndash;off values. </p>
+
+<p>This document gives a quick tour of <strong>IPWboxplot</strong> (version 0.1.1) functionalities. It was written in R Markdown, using the <a href="https://cran.r-project.org/package=knitr">knitr</a> package for production. 
+See <code>help (package=&quot;IPWboxplot&quot;)</code> for further details and references provided by <code>citation (&quot;IPWboxplot&quot;)</code>.</p>
+
+<pre><code class="r">library(IPWboxplot)
+</code></pre>
+
+<h1>Inverse Probability Weighted Quantiles</h1>
+
+<p>The function <code>IPW.quantile</code> computes the IPW quantiles of a vector <em>y</em> containing missing observations when auxiliary information from a vector of drop-out probabilities supplied by the user or from a set of covariates is available. 
+The dataset <code>boys</code> of the R package <strong>mice</strong> allows us to illustrate the use of this function.</p>
+
+<p>The dataset contains 748 observations and the variable <em>y=tv</em> has 522 missing observations. For illustrative purposes, we consider the variable <em>age</em>, which is completely observed, as covariate with  predictive capability for the propensity. By default, a logistic model is used to fit the happenstance probabilities. The following code returns the 
+$\alpha-$quantiles corresponding to \(\alpha=\) 0.25, 0.5, 0.75 and 0.9 of the variable <em>&ldquo;Testicular volume (tv)&rdquo;</em> using inverse probability weighting.</p>
+
+<pre><code class="r">library(mice)
+#&gt; Warning: package &#39;mice&#39; was built under R version 4.1.3
+data(boys)
+attach(boys)
+dim(boys)
+#&gt; [1] 748   9
+res=IPW.quantile(tv,x=age,probs=c(0.25,0.5,0.75,0.9))
+ls(res)
+#&gt; [1] &quot;IPW.quantile&quot; &quot;px&quot;
+#res$px is the vector of estimated drop-out probabilities
+#res$IPW.quantile is the vector of estimated IPW quantiles
+res$IPW.quantile
+#&gt; [1]  3  8 15 20
+</code></pre>
+
+<h1>Inverse Probability Weighted Boxplot</h1>
+
+<p>The function <code>IPW.boxplot</code> draws the modified boxplot adapted to missing data using the IPW quantiles. 
+The function also returns a list of statistical summaries. As default, the function returns only the adapted boxplot and the statistics computed by inverse probability weighting.</p>
+
+<pre><code class="r">res=IPW.boxplot(tv,x=age,main=&quot; &quot;)
+</code></pre>
+
+<p><img src="data:image/png;base64,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" alt="Inverse probability weighted boxplot for testicular volume"/></p>
+
+<pre><code>#&gt; The method used to estimate the dropout probability is  LOGISTIC 
+#&gt; IPW Quartiles 
+#&gt;  25%    50%   75% 
+#&gt;  3 8 15 
+#&gt; Lower and upper whiskers of the IPW Boxplot 
+#&gt;  Lower   Upper 
+#&gt;  1 25
+</code></pre>
+
+<p>The function returns a list containing the quartiles, the lower and upper whiskers of the IPW boxplot, the observations considered as outliers and the vector of estimated or given drop-out probabilities.</p>
+
+<pre><code class="r">ls(res)
+#&gt; [1] &quot;IPW.Quartiles&quot; &quot;IPW.whisker&quot;   &quot;out.IPW&quot;       &quot;px&quot;
+</code></pre>
+
+<p>As shown in Figure 1, the IPW boxplot does not detect ouliers for this data set.</p>
+
+<pre><code class="r">res$out.IPW
+#&gt; integer(0)
+</code></pre>
+
+<p>Specifying <em>both</em> in the argument &ldquo;graph&rdquo;, the function allows to compare the adapted boxplot with the naive boxplot obtained by simply dropping out the missing observations.  In this situation, besides the measures related to the IPW boxplot, the function also returns the quartiles, whiskers and detected outliers obtained with the observations at hand which are associated to naive boxplot.</p>
+
+<pre><code class="r">res1=IPW.boxplot(tv,x=age,graph=&quot;both&quot;,color=&quot;blue&quot;,size.letter=0.7,main=&quot; &quot;)
+</code></pre>
+
+<p><img src="data:image/png;base64,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" alt="Inverse probability weighted and naive boxplots for testicular volume"/></p>
+
+<pre><code>#&gt; The method used to estimate the dropout probability is  LOGISTIC 
+#&gt; IPW Quartiles 
+#&gt;  25%    50%   75% 
+#&gt;  3 8 15 
+#&gt; Naive Quartiles 
+#&gt;  25%    50%   75% 
+#&gt;  4 12 20 
+#&gt; Lower and upper whiskers of the IPW Boxplot 
+#&gt;  Lower   Upper 
+#&gt;  1 25 
+#&gt; Lower and upper whiskers of the Naive Boxplot 
+#&gt;  Lower   Upper 
+#&gt;  1 25
+</code></pre>
+
+<p>From Figure 2,  the differences between both boxplots become evident. In particular the box of the naive boxplot is enlarged with respect to that of the IPW. </p>
+
+<p>As mentioned above, when  the argument &ldquo;graph&rdquo; equals <em>both</em>, the function returns  a list with the naive and IPW statistical summaries.</p>
+
+<pre><code class="r">ls(res1)
+#&gt; [1] &quot;IPW.Quartiles&quot;   &quot;IPW.whisker&quot;     &quot;NAIVE.Quartiles&quot; &quot;NAIVE.whisker&quot;  
+#&gt; [5] &quot;out.IPW&quot;         &quot;out.NAIVE&quot;       &quot;px&quot;
+</code></pre>
+
+<p>Other arguments, such  as the color of the boxes, the main title, the letter size  or the axis labels can be given as arguments in this function. </p>
+
+<h1>Inverse Probability Weighted Boxplot adapted to skewed data.</h1>
+
+<p>The function <code>IPW.ASYM.boxplot</code> draws the modified boxplot adapted to missing data and skewness. In addition to the parameters returned by the function IPW.boxplot, this function also computes a skewness measure calculated as in Hinkley (1975),  see also Brys et al. (2003).</p>
+
+<p>The argument &ldquo;method&rdquo; selects the quartiles (method=&ldquo;quartile&rdquo; as default) or the octiles (method=&ldquo;octile&rdquo;) as a procedure  to compute the skewness measure denoted SKEW and defined, respectively, as</p>
+
+<p>\begin{align<em>}
+SKEW &amp;=\frac{(Q<em>{0.75}-Q</em>{0.5})-(Q<em>{0.5}-Q</em>{25})}{(Q<em>{0.75}-Q</em>{0.25}))},
+\
+SKEW &amp;=\frac{(Q<em>{0.875}-Q</em>{0.5})-(Q<em>{0.5}-Q</em>{0.125})}{(Q<em>{0.875}-Q</em>{0.125})},
+\end{align</em>}</p>
+
+<p>where \(Q_{\alpha}\) denotes the $\alpha-$quantile.</p>
+
+<p>The whiskers and the outlier cut&ndash;off values are computed by means of an exponential model in the fashion of Hubert and Vandervieren (2008) taking into account the interval:</p>
+
+<p>\begin{equation<em>}\label{interval}
+(Q_{0.25}-1.5</em>\exp{(c<em>i*SKEW)}*IQR,Q</em>{0.75}+1.5<em>\exp{(c_s*SKEW)}*IQR).
+\end{equation</em>}</p>
+
+<p>where \(IQR=Q_{0.75}-Q_{0.25}\) and   \(c_i\)=<code>ctea</code> and \(c_s\)=<code>cteb</code> if SKEW is positive, otherwise, \(c_i\)=<code>-cteb</code> and \(c_s\)=<code>-ctea</code>.</p>
+
+<p>The default values for <code>ctea</code> and <code>cteb</code> are \(-4\) and \(3\), however, the user may choose other values for these constants. </p>
+
+<p>As an example, Figures 3 displays the boxplot adapted to skewness and missing values for  the variable  head circumference, hc, which has 46 missing values.</p>
+
+<pre><code class="r">res2=IPW.ASYM.boxplot(hc,x=age,size.letter=0.85,main=&quot; &quot;)
+#&gt; The method used to estimate the dropout probability is  LOGISTIC 
+#&gt; IPW Quartiles 
+#&gt;  25%    50%   75% 
+#&gt;  48.5 53.2 56 
+#&gt; Lower and upper whiskers of the IPW Boxplot 
+#&gt;  Lower   Upper 
+#&gt;  33.7 60 
+#&gt; Skewness measure computed from the IPW  quartile 
+#&gt;  -0.2533
+</code></pre>
+
+<p><img src="data:image/png;base64,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" alt="Inverse probability weighted  boxplot adapted to skewness for head circumference."/>
+The elements returned in the list are the following:</p>
+
+<pre><code class="r">ls(res2)
+#&gt; [1] &quot;IPW.Quartiles&quot; &quot;IPW.whisker&quot;   &quot;SKEW.IPW&quot;      &quot;out.IPW&quot;      
+#&gt; [5] &quot;px&quot;
+</code></pre>
+
+<p>The  detected outliers are:</p>
+
+<pre><code class="r">res2$out.IPW
+#&gt; [1] 65.0 60.3 60.5 60.2 60.3
+</code></pre>
+
+<p>The skewness measure computed using the quartiles equals:</p>
+
+<pre><code class="r">res2$SKEW.IPW
+#&gt; [1] -0.2533333
+</code></pre>
+
+<p>By specifying &ldquo;graph&rdquo; equal to <em>both</em>, the function displays two parallel modified boxplots as in Figure 4, where the plot on the left corresponds to the IPW version and that on the right, to the naive one.</p>
+
+<pre><code class="r">res3=IPW.ASYM.boxplot(hc,x=age,graph=&quot;both&quot;,main=&quot; &quot;,color=&quot;blue&quot;,size.letter=0.75)
+#&gt; The method used to estimate the dropout probability is  LOGISTIC 
+#&gt; IPW Quartiles 
+#&gt;  25%    50%   75% 
+#&gt;  48.5 53.2 56 
+#&gt; Naive Quartiles 
+#&gt;  25%    50%   75% 
+#&gt;  48.1 53 56 
+#&gt; Lower and upper whiskers of the IPW Boxplot 
+#&gt;  Lower   Upper 
+#&gt;  33.7 60 
+#&gt; Lower and upper whiskers of the Naive Boxplot 
+#&gt;  Lower   Upper 
+#&gt;  33.7 60.5 
+#&gt; Skewness measure computed from the IPW  quartile 
+#&gt;  -0.2533 
+#&gt; Skewness measure computed from the NAIVE  quartile 
+#&gt;  -0.2405
+</code></pre>
+
+<p><img src="data:image/png;base64,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" alt="Inverse probability weighted and naive boxplots adjusted for skewness of head circumference."/>
+The elements res3$out.IPW and  res3$out.NAIVE provide the outliers detected by each method.</p>
+
+<pre><code class="r">res3$out.IPW
+#&gt; [1] 65.0 60.3 60.5 60.2 60.3
+res3$out.NAIVE
+#&gt; [1] 65
+</code></pre>
+
+<p>The values of res3$SKEW.IPW and res3$SKEW.NAIVE are the skewness measures calculated from the IPW quantiles or from the naive ones, respectively.</p>
+
+<pre><code class="r">res3$SKEW.IPW
+#&gt; [1] -0.2533333
+res3$SKEW.NAIVE
+#&gt; [1] -0.2405063
+</code></pre>
+
+<p>It is worth noticing that the naive boxplot detects only one observation as outlier, while the IPW version identifies five observations as atypical.</p>
+
+<h1>References</h1>
+
+<p>Brys, G., Hubert, M. and Struyf, A. (2003). A comparison of some new measures of skewness. In Developments in Robust Statistics, ICORS 2001, eds. R. Dutter, P. Filzmoser, U. Gather, and P.J. Rousseeuw, Heidelberg: Springer-Verlag, pp. 98-113.</p>
+
+<p>Hinkley, D. V. (1975). On power transformations to symmetry. Biometrika, 62, 101-111.</p>
+
+<p>Hubert, M. and Vandervieren,  E. (2008).  An adjusted boxplot for skewed distributions.  Computational Statistics &amp; Data Analysis, 52, 5186-5201. </p>
+
+<p>Zhang, Z., Chen, Z., Troendle, J. F. and Zhang, J. (2012). Causal inference on quantiles with an
+obstetric application. Biometrics, 68, 697-706. </p>
+
+</body>
+
+</html>

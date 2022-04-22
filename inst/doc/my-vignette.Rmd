@@ -10,9 +10,9 @@ output:
     df_print: paged
   rmarkdown::html_vignette: default
 vignette: >
-  %\VignetteIndexEntry{Vignette Title} 
+  %\VignetteIndexEntry{IPWboxplot} 
   %\VignetteEncoding{UTF-8}{inputenc}
-  %\VignetteEngine{knitr::rmarkdown} 
+  %\VignetteEngine{knitr::knitr} 
 ---
 
 ```{r setup, include = FALSE}
