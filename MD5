@@ -1,12 +1,12 @@
-0b89091f34b783652cced31a760fc3df *DESCRIPTION
+d1915c15b672e3fa92bda9c95fcbefd0 *DESCRIPTION
 da40518d85ad7191075c56cb91556d5b *NAMESPACE
 411584c0fa2f2e8b268661198764711b *R/IPW_ASYM_Boxplot.R
 aefc8c2b35aab90d53e7461422efcd06 *R/IPW_boxplot.R
 b86c1d252cc3549353fa23b93c4bf0a4 *R/IPW_quantile.R
-85019a7f376b366e21b7225922e305ec *build/vignette.rds
-88d324bb957c96aaeb7d3833bd811b01 *inst/doc/my-vignette.R
+0dd3d68645470c9b45566b6dbe867310 *build/vignette.rds
+2353a9b6b344c192350c65090975087e *inst/doc/my-vignette.R
 a33cf70269f6be48aa315b3b7002e563 *inst/doc/my-vignette.Rmd
-ed91e6868d7bf60d0fc2ee7e5ed48254 *inst/doc/my-vignette.html
+d330889383edc58c6a054fb6a812156f *inst/doc/my-vignette.html
 44a388c10e4ffa63c6580f0e5215e520 *man/IPW_ASYM_Boxplot.Rd
 97840792501b47416339b6adea3d7813 *man/IPW_boxplot.Rd
 2367edb2015f89943668b791e250807a *man/IPW_quantile.Rd
